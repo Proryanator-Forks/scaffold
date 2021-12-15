@@ -355,4 +355,36 @@ public class BaseWebElementTests extends BaseUnitTest {
                 .findElement(MockBaseWebElement.class, SharedTestVariables.CSS_SELECTOR1);
         assertEquals(expectedCombinedBy, foundElement.getBy());
     }
+
+    @Test
+    public void testExceptionHandledIsDisplayed(){
+        setBaseWhen(elementByCssSelector);
+        when(mockRawWebElement.isDisplayed()).thenThrow(TimeoutException.class);
+        assertDoesNotThrow(elementByCssSelector::isDisplayed);
+        assertFalse(elementByCssSelector.isDisplayed());
+    }
+
+    @Test
+    public void testExceptionHandledIsEnabled(){
+        setBaseWhen(elementByCssSelector);
+        when(elementByCssSelector.getRawWebElement()).thenThrow(TimeoutException.class);
+        assertDoesNotThrow(elementByCssSelector::isEnabled);
+        assertFalse(elementByCssSelector.isEnabled());
+    }
+
+    @Test
+    public void testExceptionHandledIsActive(){
+        setBaseWhen(elementByCssSelector);
+        when(elementByCssSelector.getRawWebElement()).thenThrow(TimeoutException.class);
+        assertDoesNotThrow(elementByCssSelector::isActive);
+        assertFalse(elementByCssSelector.isActive());
+    }
+
+    @Test
+    public void testExceptionHandledHasClass(){
+        setBaseWhen(elementByCssSelector);
+        when(elementByCssSelector.getRawWebElement()).thenThrow(TimeoutException.class);
+        assertDoesNotThrow(() -> elementByCssSelector.hasClass("class"));
+        assertFalse(elementByCssSelector.hasClass("class"));
+    }
 }
