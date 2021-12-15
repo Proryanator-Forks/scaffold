@@ -359,7 +359,7 @@ public class BaseWebElementTests extends BaseUnitTest {
     @Test
     public void testExceptionHandledIsDisplayed(){
         setBaseWhen(elementByCssSelector);
-        when(mockRawWebElement.isDisplayed()).thenThrow(TimeoutException.class);
+        when(mockRawWebElement.isDisplayed()).thenThrow(new TimeoutException());
         assertDoesNotThrow(elementByCssSelector::isDisplayed);
         assertFalse(elementByCssSelector.isDisplayed());
     }
@@ -367,7 +367,7 @@ public class BaseWebElementTests extends BaseUnitTest {
     @Test
     public void testExceptionHandledIsEnabled(){
         setBaseWhen(elementByCssSelector);
-        when(elementByCssSelector.getRawWebElement()).thenThrow(TimeoutException.class);
+        when(elementByCssSelector.getRawWebElement()).thenThrow(new TimeoutException());
         assertDoesNotThrow(elementByCssSelector::isEnabled);
         assertFalse(elementByCssSelector.isEnabled());
     }
@@ -375,7 +375,7 @@ public class BaseWebElementTests extends BaseUnitTest {
     @Test
     public void testExceptionHandledIsActive(){
         setBaseWhen(elementByCssSelector);
-        when(elementByCssSelector.getRawWebElement()).thenThrow(TimeoutException.class);
+        when(elementByCssSelector.getRawWebElement()).thenThrow(new TimeoutException());
         assertDoesNotThrow(elementByCssSelector::isActive);
         assertFalse(elementByCssSelector.isActive());
     }
@@ -383,7 +383,7 @@ public class BaseWebElementTests extends BaseUnitTest {
     @Test
     public void testExceptionHandledHasClass(){
         setBaseWhen(elementByCssSelector);
-        when(elementByCssSelector.getRawWebElement()).thenThrow(TimeoutException.class);
+        when(elementByCssSelector.getRawWebElement()).thenThrow(new TimeoutException());
         assertDoesNotThrow(() -> elementByCssSelector.hasClass("class"));
         assertFalse(elementByCssSelector.hasClass("class"));
     }
